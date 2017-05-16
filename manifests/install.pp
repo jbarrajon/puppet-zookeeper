@@ -16,7 +16,6 @@ class zookeeper::install inherits ::zookeeper {
       gid        => $::zookeeper::zookeeper_group,
       home       => $::zookeeper::user_home,
       managehome => $::zookeeper::manage_home,
-      shell      => '/bin/sh', # required to start application via script.
       system     => true,
     }
   }
@@ -36,8 +35,8 @@ class zookeeper::install inherits ::zookeeper {
 
   file { "${::zookeeper::user_home}/zookeeper-${::zookeeper::version}":
     ensure  => directory,
-    group   => $::zookeeper::zookeeper_group,
     owner   => $::zookeeper::zookeeper_user,
+    group   => $::zookeeper::zookeeper_group,
     require => Archive["zookeeper-${::zookeeper::version}.tar.gz"],
   }
 
@@ -48,9 +47,9 @@ class zookeeper::install inherits ::zookeeper {
 
   file { '/var/log/zookeeper':
     ensure => directory,
-    group  => $::zookeeper::zookeeper_group,
     owner  => $::zookeeper::zookeeper_user,
-    mode   => '0640',
+    group  => $::zookeeper::zookeeper_group,
+    mode   => '0750',
   }
 
 }
