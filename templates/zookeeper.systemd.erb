@@ -1,0 +1,16 @@
+[Unit]
+Description=Zookeeper
+After=network.target
+
+[Service]
+Type=forking
+Environment=<%= scope.lookupvar('::zookeeper::service_options')['environment'] %>
+User=<%= scope.lookupvar('::zookeeper::zookeeper_user') %>
+Group=<%= scope.lookupvar('::zookeeper::zookeeper_group') %>
+ExecStart=<%= scope.lookupvar('::zookeeper::user_home') %>/zookeeper/bin/zkServer.sh start
+ExecStop=<%= scope.lookupvar('::zookeeper::user_home') %>/zookeeper/bin/zkServer.sh stop
+ExecReload=<%= scope.lookupvar('::zookeeper::user_home') %>/zookeeper/bin/zkServer.sh restart
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
