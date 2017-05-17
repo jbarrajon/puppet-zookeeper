@@ -1,10 +1,13 @@
+<% options = scope.lookupvar('::zookeeper::service_options_final') -%>
 [Unit]
 Description=Zookeeper
 After=network.target
 
 [Service]
 Type=forking
-Environment=<%= scope.lookupvar('::zookeeper::service_options')['environment'] %>
+<% options['environment'].each do |key| -%>
+Environment="<%= key %>"
+<% end -%>
 User=<%= scope.lookupvar('::zookeeper::zookeeper_user') %>
 Group=<%= scope.lookupvar('::zookeeper::zookeeper_group') %>
 ExecStart=<%= scope.lookupvar('::zookeeper::user_home') %>/zookeeper/bin/zkServer.sh start

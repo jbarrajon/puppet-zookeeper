@@ -16,17 +16,17 @@ class zookeeper::params {
 
   $manage_config   = true
   $config_template = 'zookeeper/zookeeper.conf.erb'
-  $config_options  = {}
   $config_datadir  = '/var/lib/zookeeper'
   $config_myid     = '1'
+  $config_options_default = {}
 
   $manage_service   = true
   $service_ensure   = 'running'
   $service_enable   = true
   $service_script   = '/etc/systemd/system/zookeeper.service'
   $service_template = 'zookeeper/zookeeper.systemd.erb'
-  $service_options  = {
-    'environment' => 'ZOO_LOG_DIR=/var/log/zookeeper ZOOCFGDIR=/etc/zookeeper ZOOCFG=zoo.cfg',
+  $service_options_default = {
+    'environment' => ['ZOO_LOG_DIR=/var/log/zookeeper', 'ZOOCFGDIR=/etc/zookeeper', 'ZOOCFG=zoo.cfg'],
   }
 
 }

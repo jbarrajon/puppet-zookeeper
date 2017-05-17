@@ -4,6 +4,6 @@
 
 dataDir=<%= scope.lookupvar('::zookeeper::config_datadir')%>/
 
-<% scope.lookupvar('::zookeeper::config_options').each do |key,value| -%>
+<% scope.lookupvar('::zookeeper::config_options_final').each do |key,value| -%>
 <%= key %>=<%= value %>
 <% end -%>
