@@ -16,9 +16,10 @@ class zookeeper::params {
 
   $manage_config   = true
   $config_template = 'zookeeper/zookeeper.conf.erb'
-  $config_datadir  = '/var/lib/zookeeper'
   $config_myid     = '1'
-  $config_options_default = {}
+  $config_options_default = {
+    'dataDir' => '/var/lib/zookeeper',
+  }
 
   $manage_service   = true
   $service_ensure   = 'running'

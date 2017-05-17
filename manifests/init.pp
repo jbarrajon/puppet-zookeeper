@@ -16,7 +16,6 @@ class zookeeper (
   $manage_config    = $::zookeeper::params::manage_config,
   $config_template  = $::zookeeper::params::config_template,
   $config_options   = {},
-  $config_datadir   = $::zookeeper::params::config_datadir,
   $config_myid      = $::zookeeper::params::config_myid,
   $manage_service   = $::zookeeper::params::manage_service,
   $service_script   = $::zookeeper::params::service_script,
